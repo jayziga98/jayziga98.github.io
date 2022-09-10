@@ -8,7 +8,6 @@ body {
 
 .container {
 	max-width: 375px;
-    text-align: center;
 }
 
 .tab {
@@ -40,6 +39,7 @@ body {
 
 .tablimiter {
     width: 351px;
+    margin-top: 0.5px;
     padding-left: 24px;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
