@@ -26,9 +26,11 @@ body {
 } */
 
 .tablinks {
-    margin-right: 28px;
+    margin-left: 0;
+    margin-right: 14px;
     margin-top: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 0;
+    padding-bottom: 16px;
 
     border: none;
     background-color: transparent;
@@ -56,6 +58,7 @@ body {
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
 
+    /*
     mask-image: linear-gradient(
       90deg,
       transparent 0, rgba(0, 0, 0, .25) 9px,
@@ -64,6 +67,7 @@ body {
       rgba(0, 0, 0, .25) calc(100% - 9px),
       transparent
     );
+    */
 
     border: 0.5px solid #B2B2B2;
     border-right: none;
