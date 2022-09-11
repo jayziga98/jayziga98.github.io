@@ -39,24 +39,27 @@ for (let i = 1; i <= 6; i++) {
     });
 }
 
-let touchstartX = 0
-let touchendX = 0
+let touchstartX = 0;
+let touchstartY = 0;
+let touchendX = 0;
     
 function checkDirection() {
-  if (touchendX < touchstartX) return "left";
-  if (touchendX > touchstartX) return "right";
+    let tablimHeight = window.getComputedStyle(document.getElementById("tablimiter")).height;
+    if (touchendX < touchstartX && touchstartY > tablimHeight) return "left";
+    if (touchendX > touchstartX && touchstartY > tablimHeight) return "right";
 }
 
 document.addEventListener('touchstart', e => {
-    touchstartX = e.changedTouches[0].screenX
-})
+    touchstartX = e.changedTouches[0].screenX;
+    touchstartY = e.changedTouches[0].screenY;
+});
 
 document.addEventListener('touchend', e => {
-    touchendX = e.changedTouches[0].screenX
+    touchendX = e.changedTouches[0].screenX;
     let side = checkDirection();
-    if (side === "left" && curTab > 1)
+    if (side == "left" && curTab < 6)
         curTab++;
-    else if (side === "right" && curTab < 6)
+    else if (side == "right" && curTab > 1)
         curTab--;
         
     for (let j = 1; j <= 6; j++)
@@ -69,4 +72,4 @@ document.addEventListener('touchend', e => {
     let tablink = document.getElementById("tablink" + curTab);
     tablink.style.borderBottom = "2px solid #000";
     tablink.style.color = "#7A7A7A";
-})
+});
