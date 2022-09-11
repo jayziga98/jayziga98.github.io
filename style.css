@@ -16,6 +16,15 @@ body {
     display: flex;
 }
 
+/* #rectangle {
+    position: absolute;
+    height: 2px;
+    top: 10px;
+    width: 101px;
+
+    background: #000000;
+} */
+
 .tablinks {
     margin-right: 28px;
     margin-top: 16px;
@@ -40,9 +49,10 @@ body {
 }
 
 .tablimiter {
-    width: 95%;
+    box-sizing: border-box;
     margin-top: 0.5px;
-    padding-left: 24px;
+    padding: 0 24px;
+    width: 100%;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
 
