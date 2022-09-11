@@ -26,7 +26,7 @@ let dfltTab = document.getElementById("all");
 let tabStyles = window.getComputedStyle(dfltTab);
 
 dfltTab.style.color = "#7A7A7A";
-dfltTab.style.borderBottom = "2px solid #000";
+dfltTab.style.borderBottom = "3px solid #000";
 viewItems("all");
 
 curTab = 0;
@@ -40,7 +40,7 @@ for (let i = 0; i < tablinks.length; i++) {
                 tablinks[j].style.borderBottom = "none";
             }
 
-        tablinks[i].style.borderBottom = "2px solid #000";
+        tablinks[i].style.borderBottom = "3px solid #000";
         tablinks[i].style.color = "#7A7A7A";
         
         hideItems();
