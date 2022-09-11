@@ -7,34 +7,45 @@ tg.MainButton.color = "#2cab37";
 
 tg.BackButton.show();
 
+function hideItems() {
+    let items = document.getElementsByClassName("item");
+    for (let i = 0; i < items.length; i++)
+        items[i].style.display = "none";
+}
+
+function viewItems(filter) {
+    let items = document.getElementsByClassName("item");
+    for (let i = 0; i < items.length; i++)
+        if (items[i].id.search(filter) != -1)
+            items[i].style.display = '';
+}
+
 let curTab = 1;
 
-//let selectline = document.getElementById("rectangle");
-let dfltTab = document.getElementById("tablink1");
+let dfltTab = document.getElementById("all");
 let tabStyles = window.getComputedStyle(dfltTab);
 
-//selectline.style.width = parseFloat(tabStyles.width) + 2 + "px";
-//selectline.style.left =  dfltTab.getBoundingClientRect().left + "px";
 dfltTab.style.color = "#7A7A7A";
 dfltTab.style.borderBottom = "2px solid #000";
+viewItems("all");
 
-curTab = 1;
+curTab = 0;
 
-for (let i = 1; i <= 6; i++) {
-    let tablink = document.getElementById("tablink" + i);
-    tablink.addEventListener("click", function(){
-        for (let j = 1; j <= 6; j++)
+let tablinks = document.getElementsByClassName("tablinks");
+for (let i = 0; i < tablinks.length; i++) {
+    tablinks[i].addEventListener("click", function(){
+        for (let j = 0; j < tablinks.length; j++)
             if (j != i) {
-                let tablinkOld = document.getElementById("tablink" + j);
-                tablinkOld.style.color = "#000";
-                tablinkOld.style.borderBottom = "none";
+                tablinks[j].style.color = "#000";
+                tablinks[j].style.borderBottom = "none";
             }
 
-        tablink.style.borderBottom = "2px solid #000";
-        //let tabWidth = window.getComputedStyle(tablink).width;
-        //selectline.style.width = parseFloat(tabWidth) + 2 + "px";
-        //selectline.style.left =  tablink.getBoundingClientRect().left + "px";
-        tablink.style.color = "#7A7A7A";
+        tablinks[i].style.borderBottom = "2px solid #000";
+        tablinks[i].style.color = "#7A7A7A";
+        
+        hideItems();
+        viewItems(tablinks[i].id);
+        
         curTab = i;
     });
 }
@@ -42,9 +53,10 @@ for (let i = 1; i <= 6; i++) {
 let touchstartX = 0;
 let touchstartY = 0;
 let touchendX = 0;
-    
+
 function checkDirection() {
     let tablimHeight = window.getComputedStyle(document.getElementById("tablimiter")).height;
+    tablimHeight = stablimHeighttr.substring(0, tablimHeight.length - 2);
     if (touchendX < touchstartX && touchstartY > tablimHeight) return "left";
     if (touchendX > touchstartX && touchstartY > tablimHeight) return "right";
 }
@@ -52,24 +64,27 @@ function checkDirection() {
 document.addEventListener('touchstart', e => {
     touchstartX = e.changedTouches[0].screenX;
     touchstartY = e.changedTouches[0].screenY;
+    alert(touchstartY);
 });
 
 document.addEventListener('touchend', e => {
     touchendX = e.changedTouches[0].screenX;
     let side = checkDirection();
-    if (side == "left" && curTab < 6)
+    if (side == "left" && curTab < tablinks.length - 1)
         curTab++;
-    else if (side == "right" && curTab > 1)
+    else if (side == "right" && curTab > 0)
         curTab--;
-        
-    for (let j = 1; j <= 6; j++)
+
+
+    for (let j = 0; j < tablinks.length; j++)
         if (j != curTab) {
-            let tablinkOld = document.getElementById("tablink" + j);
-            tablinkOld.style.color = "#000";
-            tablinkOld.style.borderBottom = "none";
+            tablinks[j].style.color = "#000";
+            tablinks[j].style.borderBottom = "none";
         }
 
-    let tablink = document.getElementById("tablink" + curTab);
-    tablink.style.borderBottom = "2px solid #000";
-    tablink.style.color = "#7A7A7A";
+    tablinks[curTab].style.borderBottom = "2px solid #000";
+    tablinks[curTab].style.color = "#7A7A7A";
+
+    hideItems();
+    viewItems(tablinks[curTab].id);
 });
