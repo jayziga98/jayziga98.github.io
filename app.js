@@ -64,7 +64,6 @@ function checkDirection() {
 document.addEventListener('touchstart', e => {
     touchstartX = e.changedTouches[0].screenX;
     touchstartY = e.changedTouches[0].screenY;
-    alert(touchstartY);
 });
 
 document.addEventListener('touchend', e => {
