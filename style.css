@@ -48,6 +48,10 @@ body {
     color: var(--tg-theme-text-color);
 }
 
+.tablinks:first-child {
+    margin-left: 24px;
+}
+
 .tablinks:last-child {
     margin-right: 0;
 }
@@ -55,8 +59,6 @@ body {
 .tablimiter {
     box-sizing: border-box;
     margin-top: 0.5px;
-    padding-left: 24px;
-    padding-right: 24px;
     width: 100%;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;

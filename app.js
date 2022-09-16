@@ -40,12 +40,12 @@ for (let i = 0; i < tablinks.length; i++) {
     tablinks[i].addEventListener("click", function(){
         for (let j = 0; j < tablinks.length; j++)
             if (j != i) {
-                tablinks[j].style.color = "#000";
+                tablinks[j].style.color = "var(--tg-theme-text-color)";
                 tablinks[j].style.borderBottom = "none";
             }
 
-        tablinks[i].style.borderBottom = "3px solid #000";
-        tablinks[i].style.color = "#7A7A7A";
+        tablinks[i].style.borderBottom = "3px solid var(--tg-theme-text-color)";
+        tablinks[i].style.color = "var(--tg-theme-hint-color)";
         
         hideItems();
         viewItems(tablinks[i].id);
