@@ -29,8 +29,8 @@ let curTab = 1;
 let dfltTab = document.getElementById("all");
 let tabStyles = window.getComputedStyle(dfltTab);
 
-dfltTab.style.color = "#7A7A7A";
-dfltTab.style.borderBottom = "3px solid #000";
+dfltTab.style.color = "var(--tg-theme-hint-color)";
+dfltTab.style.borderBottom = "3px solid var(--tg-theme-text-color)";
 viewItems("all");
 
 curTab = 0;
@@ -57,12 +57,13 @@ for (let i = 0; i < tablinks.length; i++) {
 let touchstartX = 0;
 let touchstartY = 0;
 let touchendX = 0;
+let touchendY = 0;
 
 function checkDirection() {
     let tablimHeight = window.getComputedStyle(document.getElementById("tablimiter")).height;
     tablimHeight = tablimHeight.substring(0, tablimHeight.length - 2);
-    if (touchendX < touchstartX && touchstartY > tablimHeight) return "left";
-    if (touchendX > touchstartX && touchstartY > tablimHeight) return "right";
+    if (touchendX < touchstartX && touchstartY > tablimHeight && Math.abs(touchendY - touchendX) < 100) return "left";
+    if (touchendX > touchstartX && touchstartY > tablimHeight && Math.abs(touchendY - touchendX) < 100) return "right";
 }
 
 document.addEventListener('touchstart', e => {
@@ -72,6 +73,7 @@ document.addEventListener('touchstart', e => {
 
 document.addEventListener('touchend', e => {
     touchendX = e.changedTouches[0].screenX;
+    touchendY = e.changedTouches[0].screenY;
     let side = checkDirection();
     if (side == "left" && curTab < tablinks.length - 1)
         curTab++;
@@ -81,12 +83,12 @@ document.addEventListener('touchend', e => {
 
     for (let j = 0; j < tablinks.length; j++)
         if (j != curTab) {
-            tablinks[j].style.color = "#000";
+            tablinks[j].style.color = "var(--tg-theme-text-color)";
             tablinks[j].style.borderBottom = "none";
         }
 
-    tablinks[curTab].style.borderBottom = "2px solid #000";
-    tablinks[curTab].style.color = "#7A7A7A";
+    tablinks[curTab].style.borderBottom = "2px solid var(--tg-theme-text-color)";
+    tablinks[curTab].style.color = "var(--tg-theme-hint-color)";
 
     hideItems();
     viewItems(tablinks[curTab].id);
