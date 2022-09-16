@@ -57,6 +57,7 @@ let touchendX = 0;
 function checkDirection() {
     let tablimHeight = window.getComputedStyle(document.getElementById("tablimiter")).height;
     tablimHeight = stablimHeighttr.substring(0, tablimHeight.length - 2);
+    alert(touchstartY + ' ' + tablimHeight);
     if (touchendX < touchstartX && touchstartY > tablimHeight) return "left";
     if (touchendX > touchstartX && touchstartY > tablimHeight) return "right";
 }
