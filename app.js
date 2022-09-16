@@ -5,7 +5,11 @@ tg.expand();
 tg.MainButton.textColor = "#FFFFFF";
 tg.MainButton.color = "#2cab37";
 
-tg.BackButton.show();
+if (tg.colorScheme == "light") {
+    let wrap = document.getElementsByClassName("imgwrapper");
+    for (let i = 0; i < wrap.length; i++)
+        wrap[i].style.backgroundColor = "rgba(0, 0, 0, 0.05)";
+}
 
 function hideItems() {
     let items = document.getElementsByClassName("item");
@@ -57,7 +61,6 @@ let touchendX = 0;
 function checkDirection() {
     let tablimHeight = window.getComputedStyle(document.getElementById("tablimiter")).height;
     tablimHeight = tablimHeight.substring(0, tablimHeight.length - 2);
-    alert(touchstartY + ' ' + tablimHeight);
     if (touchendX < touchstartX && touchstartY > tablimHeight) return "left";
     if (touchendX > touchstartX && touchstartY > tablimHeight) return "right";
 }
